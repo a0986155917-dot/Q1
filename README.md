@@ -1,6 +1,6 @@
 # Q1
 
-# 硬幣偵測與影像處理專案 (Coin Detection Project)
+# 硬幣偵測與影像處理
 
  目標是透過 **Python (OpenCV)** 與 **MATLAB** ，對影片中硬幣的即時偵測、定位與標註。
 
