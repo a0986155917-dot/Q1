@@ -103,7 +103,7 @@ fig = figure('Name', 'MATLAB Coin Detection', 'Units', 'pixels', 'Position', [10
 while hasFrame(v)
 frame = readFrame(v);
     
-% --- 影像處理與標註 (維持原樣) ---
+% --- 影像處理與標註  ---
     gray = rgb2gray(frame);
     blurred = imgaussfilt(gray, 2);
     thresh = imbinarize(blurred, 0.45)
@@ -123,14 +123,14 @@ frame = readFrame(v);
     end close(v_out);
     fprintf(' 偵測完成');
 ```
-* **說明**: 透過 `regionprops` 進行精準的幾何矩分析。針對 MATLAB Online 網頁環境進行優化，使用 `insertShape` 直接操作影像矩陣以提升穩定性。
-* **預覽**: `output_matlab.avi`
+
+* **預覽**: 
 
 ---
 
 ##  參數調整心得
-在實作過程中，針對環境光線進行了多次參數優化：
-* **門檻值 (Threshold)**: 從初始的 0.7 降至 **0.45**，成功解決了硬幣亮度不足導致漏偵測的問題。
-* **面積過濾**: 將下限提升至 **10,000**，有效過濾掉背景中亮度較高的鍵盤字母干擾。
+在實作過程中，針對環境光線進行了多次參數挑整：
+* **門檻值**: 從 0.7 降至 0.45，解決了硬幣亮度不足導致偵測不到的問題。
+* **面積過濾**: 將下限提升至 **10,000**，過濾掉背景中亮度較高的鍵盤字母干擾。
 
 ---
