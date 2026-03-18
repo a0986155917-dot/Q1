@@ -124,7 +124,8 @@ frame = readFrame(v);
     fprintf(' 偵測完成');
 ```
 
-* **預覽**: 
+* **預覽**:
+  ![Python](piu.gif)
 
 ---
 
