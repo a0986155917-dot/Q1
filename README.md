@@ -79,7 +79,46 @@ print("偵測完成！影片已存為 output.mp4")
 * **預覽**: 
 
 ### 2. MATLAB 實作成果
-* **實作檔案**: `detect_coins.m`
+* **實作檔案**:
+```
+% MATLAB 硬幣偵測程式碼
+% 讀取影片檔
+v = VideoReader('coin.mp4');
+% 在第 4 行下面加入這兩行，讓程式知道影片的原始尺寸
+width = v.Width;
+height = v.Height;
+% 準備輸出影片檔 (output_matlab.mp4)
+v_out = VideoWriter('output_matlab', 'Motion JPEG AVI');
+open(v_out);
+
+% 建立顯示視窗
+  figure('Name', 'MATLAB Coin Detection');
+% 強制固定視窗大小，避免手動縮放視窗導致寫入失敗
+fig = figure('Name', 'MATLAB Coin Detection', 'Units', 'pixels', 'Position', [100 100 640 480]);
+  set(gca, 'Units', 'normalized', 'Position', [0 0 1 1]); % 讓影像填滿視窗
+while hasFrame(v)
+frame = readFrame(v);
+    
+% --- 影像處理與標註 (維持原樣) ---
+    gray = rgb2gray(frame);
+    blurred = imgaussfilt(gray, 2);
+    thresh = imbinarize(blurred, 0.45)
+    stats = regionprops(thresh, 'BoundingBox', 'Centroid', 'Area');
+    
+    for k = 1:length(stats)
+        if stats(k).Area > 10000 && stats(k).Area < 100000
+            bb = round(stats(k).BoundingBox);
+            frame = insertShape(frame, 'Rectangle', bb, 'Color', 'red', 'LineWidth', 5);
+            centroid = stats(k).Centroid;
+            frame = insertText(frame, [centroid(1) centroid(2)-20], ...
+                sprintf('(%.0f,%.0f)', centroid(1), centroid(2)), 'FontSize', 18, 'TextColor', 'red', 'BoxOpacity', 0);
+        end
+    end
+
+    writeVideo(v_out, frame);
+    end close(v_out);
+    fprintf(' 偵測完成');
+```
 * **說明**: 透過 `regionprops` 進行精準的幾何矩分析。針對 MATLAB Online 網頁環境進行優化，使用 `insertShape` 直接操作影像矩陣以提升穩定性。
 * **預覽**: `output_matlab.avi`
 
