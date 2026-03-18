@@ -77,7 +77,7 @@ cv2.destroyAllWindows()
 print("偵測完成！影片已存為 output.mp4")
 ```
 * **預覽**:
-![硬幣偵測成果](clideo_editor_5bbe51dc14d04c4face5488bde56cbc4 (1).gif)
+![成果](%E3%80%8C%E8%A3%81%E5%88%87%E5%BD%B1%E7%89%87%E3%80%8D%E5%B0%88%E6%A1%88.gif)
 
 ### 2. MATLAB 實作成果
 * **實作檔案**:
