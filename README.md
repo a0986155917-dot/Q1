@@ -126,7 +126,7 @@ frame = readFrame(v);
 
 * **預覽**:
   ![Python](piu.gif)
-  ![MATLAB](output_matlab-Trim.gif)
+  ![MATLAB](output_matlab%20-%20Trim.gif)
 ---
 
 ##  調整心得
